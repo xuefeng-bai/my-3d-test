@@ -19,6 +19,20 @@
       "preview": "projects/n90-snowline/preview/hero.jpg"
     },
     {
+      "slug": "kyoto-higashiyama",
+      "title": "東山 · Higashiyama, Kyoto",
+      "summary": "祇園白川到清水寺的可行走京都街景，Claude Fable 5.1 生成的手绘动画风 3D 世界。",
+      "tags": ["Three.js", "Claude 精选", "京都", "可行走"],
+      "status": "active",
+      "kind": "reference",
+      "collection": "claude",
+      "source": "https://github.com/PhiloLabs/fable51-worlds",
+      "license": "MIT",
+      "syncCommit": "d24028466530a15d58d3d94537e6317b84101589",
+      "entry": "projects/references/kyoto-higashiyama/",
+      "preview": "projects/references/kyoto-higashiyama/preview/hero.jpg"
+    },
+    {
       "slug": "yoru-mart-diorama",
       "title": "雨夜便利店 · Yoru Mart",
       "summary": "雨夜日式便利店街角的卡通渲染微缩模型，自带完全离线包，拖动即可环视。",

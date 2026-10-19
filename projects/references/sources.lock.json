@@ -2,6 +2,23 @@
   "policy": "Pinned MIT reference snapshots. Only the static runtime output is vendored; upstream source stays at the linked repository.",
   "references": [
     {
+      "slug": "kyoto-higashiyama",
+      "repo": "https://github.com/PhiloLabs/fable51-worlds",
+      "commit": "d24028466530a15d58d3d94537e6317b84101589",
+      "sourcePath": "kyoto-higashiyama/",
+      "model": "Claude Fable 5.1",
+      "collection": "claude",
+      "license": "MIT",
+      "syncedAt": "2026-10-19",
+      "localChanges": [
+        "Built the upstream standalone viewer from source (Vite build + viewer/build.mjs).",
+        "Removed the optional Google Fonts links to keep the viewer fully offline.",
+        "Added a data favicon and the VITRINE scene-index back link.",
+        "Added a small in-viewer OpenStreetMap / GSI credit line.",
+        "Added the upstream MIT license, data attribution, and this project's documentation."
+      ]
+    },
+    {
       "slug": "yoru-mart-diorama",
       "repo": "https://github.com/Halorui-ai/yoru-mart-diorama",
       "commit": "98c1686f92f8934917456596b7fdbc194c4707fe",

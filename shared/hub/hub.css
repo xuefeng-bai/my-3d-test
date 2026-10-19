@@ -370,6 +370,18 @@ main {
   box-shadow: 0 24px 60px rgba(19, 36, 54, 0.34);
 }
 
+.project-card.is-claude {
+  border-color: rgba(220, 186, 128, 0.3);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(220, 186, 128, 0.08), transparent 46%),
+    linear-gradient(180deg, rgba(28, 26, 24, 0.95), rgba(12, 14, 18, 0.97));
+}
+
+.project-card.is-claude:hover {
+  border-color: rgba(220, 186, 128, 0.56);
+  box-shadow: 0 24px 64px rgba(70, 52, 24, 0.3);
+}
+
 .project-card {
   display: flex;
   flex-direction: column;
@@ -499,6 +511,11 @@ main {
 .status-badge.tone-reference {
   border-color: rgba(154, 189, 224, 0.4);
   color: #b7d0ea;
+}
+
+.status-badge.tone-claude {
+  border-color: rgba(220, 186, 128, 0.5);
+  color: #e4c98f;
 }
 
 .card-index {

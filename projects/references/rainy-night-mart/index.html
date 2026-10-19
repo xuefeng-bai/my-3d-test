@@ -1384,18 +1384,21 @@ addEventListener('resize', () => {
 });
 </script>
 
+
+
 <!-- vitrine-reference-back -->
 <style>
   .vitrine-reference-back {
     position: fixed;
     z-index: 2147483647;
     top: max(14px, env(safe-area-inset-top));
-    left: max(14px, env(safe-area-inset-left));
+    left: 50%;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     height: 32px;
     padding: 0 13px 0 11px;
+    transform: translateX(-50%);
     border: 1px solid rgba(230, 241, 232, 0.22);
     border-radius: 999px;
     background: rgba(7, 12, 10, 0.66);
@@ -1423,7 +1426,7 @@ addEventListener('resize', () => {
   .vitrine-reference-back:hover {
     border-color: rgba(151, 228, 189, 0.42);
     background: rgba(12, 23, 17, 0.84);
-    transform: translateY(-1px);
+    transform: translateX(-50%) translateY(-1px);
   }
   .vitrine-reference-back:focus-visible {
     outline: 2px solid rgba(127, 227, 176, 0.9);
@@ -1432,7 +1435,7 @@ addEventListener('resize', () => {
   @media (max-width: 600px) {
     .vitrine-reference-back {
       top: max(10px, env(safe-area-inset-top));
-      left: max(10px, env(safe-area-inset-left));
+      left: 50%;
       height: 29px;
       padding: 0 11px 0 9px;
       font-size: 9px;

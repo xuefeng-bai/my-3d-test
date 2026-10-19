@@ -39,16 +39,19 @@ function createPlaceholder(project) {
 }
 
 function createCard(project, index, isReference = false) {
+  const isClaude = isReference && project.collection === 'claude';
   const status = isReference
-    ? { label: '参考案例', tone: 'reference' }
+    ? { label: isClaude ? 'Claude 精选' : '参考案例', tone: isClaude ? 'claude' : 'reference' }
     : (STATUS[project.status] || {
       label: project.status || '未标记',
       tone: 'archived',
     });
 
-  const card = make('a', isReference ? 'project-card is-reference' : 'project-card');
+  const card = make('a', isReference
+    ? `project-card is-reference${isClaude ? ' is-claude' : ''}`
+    : 'project-card');
   card.href = project.entry;
-  card.setAttribute('aria-label', `${isReference ? '打开参考案例' : '打开场景'}：${project.title}`);
+  card.setAttribute('aria-label', `${isReference ? (isClaude ? '打开 Claude 精选案例' : '打开参考案例') : '打开场景'}：${project.title}`);
   card.style.setProperty('--i', String(index));
 
   const preview = make('div', 'card-preview');
@@ -71,7 +74,7 @@ function createCard(project, index, isReference = false) {
 
   preview.append(make('span', `status-badge tone-${status.tone}`, status.label));
   preview.append(make('span', 'card-index', isReference
-    ? `R${String(index + 1).padStart(2, '0')}`
+    ? `${isClaude ? 'C' : 'R'}${String(index + 1).padStart(2, '0')}`
     : String(index + 1).padStart(2, '0')));
 
   const body = make('div', 'card-body');
@@ -86,9 +89,9 @@ function createCard(project, index, isReference = false) {
 
   const meta = make('div', 'card-meta');
   meta.append(make('code', '', isReference
-    ? `${(project.license || 'EXTERNAL').toUpperCase()} · REFERENCE`
+    ? `${(project.license || 'EXTERNAL').toUpperCase()} · ${isClaude ? 'CLAUDE' : 'REFERENCE'}`
     : project.entry.replace(/\/$/, '')));
-  meta.append(make('span', 'card-open', isReference ? '打开案例 ↗' : '打开场景 ↗'));
+  meta.append(make('span', 'card-open', isReference ? (isClaude ? '打开精选 ↗' : '打开案例 ↗') : '打开场景 ↗'));
   body.append(meta);
 
   card.append(preview, body);

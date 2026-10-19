@@ -31,6 +31,7 @@ vitrine/
 │  ├─ n90-snowline/           # 场景：澎湃雪线 · N90 Max（已归档）
 │  └─ references/             # 第三方参考案例（固定 commit + 许可证）
 │     ├─ sources.lock.json    # 参考案例的上游与同步记录
+│     ├─ kyoto-higashiyama/   # Claude 精选：京都东山可行走街景
 │     ├─ yoru-mart-diorama/
 │     ├─ sakura-station-corner/
 │     └─ rainy-night-mart/
@@ -58,11 +59,14 @@ vitrine/
 
 ### 外部参考案例
 
-| 案例 | 上游 | 同步版本 | 许可证 |
-| --- | --- | --- | --- |
-| 雨夜便利店 · Yoru Mart | [Halorui-ai/yoru-mart-diorama](https://github.com/Halorui-ai/yoru-mart-diorama) | `98c1686` | MIT |
-| 樱花街角 · 电车与便利店 | [fanhuayishiy/ai-demo](https://github.com/fanhuayishiy/ai-demo) | `13a6321` | MIT |
-| 雨夜便利店街角 · Rainy Night Mart | [givfei5-hash/rainy-night-mart](https://github.com/givfei5-hash/rainy-night-mart) | `fab6115` | MIT |
+| 案例 | 上游 | 生成模型 | 同步版本 | 许可证 |
+| --- | --- | --- | --- | --- |
+| **東山 · Higashiyama, Kyoto**（Claude 精选） | [PhiloLabs/fable51-worlds](https://github.com/PhiloLabs/fable51-worlds) | Claude Fable 5.1 | `d240284` | MIT |
+| 雨夜便利店 · Yoru Mart | [Halorui-ai/yoru-mart-diorama](https://github.com/Halorui-ai/yoru-mart-diorama) | — | `98c1686` | MIT |
+| 樱花街角 · 电车与便利店 | [fanhuayishiy/ai-demo](https://github.com/fanhuayishiy/ai-demo) | — | `13a6321` | MIT |
+| 雨夜便利店街角 · Rainy Night Mart | [givfei5-hash/rainy-night-mart](https://github.com/givfei5-hash/rainy-night-mart) | — | `fab6115` | MIT |
+
+京都案例带有 `collection: "claude"` 与 `Claude 精选` 标记；这是当前参考案例中完成度最高、交互最完整的作品。
 
 入口均相对于 `http://127.0.0.1:4173`。原创场景状态取值：`active`（维护中）、`wip`（开发中）、`archived`（已归档）。参考案例使用 `kind: "reference"` 与独立区块展示，不混入原创场景计数。
 
@@ -121,6 +125,8 @@ npm run new -- my-scene "我的场景" "一句话描述"
 5. 注入统一的「VITRINE · 场景索引」返回浮层；运行 `node scripts/inject-reference-back.mjs` 可重建该浮层。
 6. 在根 README、registry 和案例 README 中保留来源、作者与许可证说明。
 
+`collection: "claude"` 用于标记由 Claude 端到端生成的精选案例；首页会显示 `Claude 精选` 徽章、C 编号与更明显的卡片强调色。
+
 参考案例按独立静态页面运行；删除对应目录并从 registry 移除条目即可回滚，不影响原创场景。
 
 ## 场景注册表
@@ -135,6 +141,7 @@ npm run new -- my-scene "我的场景" "一句话描述"
 | `tags` | 展示用标签，最多显示前 4 个 |
 | `status` | 原创场景的维护状态：`active` / `wip` / `archived` |
 | `kind` | 可选，`scene`（默认）或 `reference`；参考案例必须为 `reference` |
+| `collection` | 可选；`claude` 表示 Claude 精选案例 |
 | `source` | 参考案例的上游仓库 URL |
 | `license` | 参考案例许可证，如 `MIT` |
 | `syncCommit` | 参考案例固定的上游 commit |
@@ -170,7 +177,7 @@ npm run check
 
 ## 共享依赖升级
 
-`shared/vendor/three/` 目前为 Three.js r169。升级时替换该目录，并逐一回归使用共享依赖的原创场景与 `rainy-night-mart`；参考案例中自带打包 Three.js 的 `yoru-mart-diorama`、`sakura-station-corner` 不受共享依赖升级影响。
+`shared/vendor/three/` 目前为 Three.js r169。升级时替换该目录，并逐一回归使用共享依赖的原创场景与 `rainy-night-mart`；自带打包 Three.js 的 `kyoto-higashiyama`（r180）、`yoru-mart-diorama` 和 `sakura-station-corner`（r186）不受共享依赖升级影响。
 
 ## 说明
 
