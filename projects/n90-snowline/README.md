@@ -22,7 +22,7 @@
 
 需要本机安装 **Node.js 18+**。本场景由仓库根目录的共享服务器托管，页面使用 ES Modules，不能直接双击 `index.html` 打开。
 
-在仓库根目录（`my-3d-test/`）执行：
+在仓库根目录执行：
 
 ```bash
 npm start

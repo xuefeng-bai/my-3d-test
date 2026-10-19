@@ -1,6 +1,6 @@
-# MY-3D-TEST · 个人 3D 实验场
+# VITRINE · 3D 场景陈列馆
 
-一个用于试验 Three.js / WebGL 场景的本地仓库。每个场景是 `projects/` 下完全独立的静态项目，共享同一份 Three.js 依赖与预览服务器；根目录首页是所有场景的统一索引。
+VITRINE 是一个用于试验 Three.js / WebGL 场景的本地场景库。每个场景是 `projects/` 下完全独立的静态项目，像展品一样陈列在根目录索引中；它们共享同一份 Three.js 依赖与预览服务器。
 
 ## 快速开始
 
@@ -19,7 +19,7 @@ npm start
 ## 目录结构
 
 ```text
-my-3d-test/
+vitrine/
 ├─ index.html                 # 场景索引首页（读取 registry.json）
 ├─ shared/
 │  ├─ hub/                    # 索引页的样式与脚本
@@ -30,7 +30,7 @@ my-3d-test/
 │  ├─ seven-eleven/           # 场景：AFTER HOURS · 街角 7-ELEVEN
 │  └─ n90-snowline/           # 场景：澎湃雪线 · N90 Max（已归档）
 ├─ scripts/
-│  ├─ new-project.mjs        # 新项目脚手架
+│  ├─ new-project.mjs         # 新项目脚手架
 │  └─ check-projects.mjs      # 仓库健康检查
 ├─ server.cjs                 # 零依赖静态服务器
 ├─ start.cmd                  # Windows 一键启动
@@ -38,6 +38,8 @@ my-3d-test/
 ├─ .gitignore
 └─ README.md
 ```
+
+> 当前工作区目录名可能仍为 `my-3d-test/`；项目名与目录名相互独立。若需同步目录名，可在关闭 IDE 后将文件夹重命名为 `vitrine/`。
 
 ## 项目清单
 
