@@ -155,7 +155,7 @@ async function load() {
     hint.textContent = '无法读取 projects/registry.json。请通过 npm start 启动本地服务器后访问，而不是直接双击 index.html。';
     grid.replaceChildren(hint);
     filterBar.replaceChildren();
-    console.error('[hub] 读取场景清单失败', error);
+    console.error('[vitrine] 读取场景清单失败', error);
   }
 }
 
