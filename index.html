@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#08090b" />
+  <meta name="description" content="MY-3D-TEST：个人 3D 实验场，集中管理多个独立的 Three.js / WebGL 场景。" />
+  <title>MY-3D-TEST · 3D 实验场</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0d10'/%3E%3Cpath d='M32 12l18 10v20L32 52 14 42V22z' fill='none' stroke='%237fe3b0' stroke-width='3'/%3E%3Cpath d='M14 22l18 10 18-10M32 32v20' fill='none' stroke='%237fe3b0' stroke-width='3'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="shared/hub/hub.css" />
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true">
+    <div class="backdrop-grid"></div>
+    <div class="backdrop-glow backdrop-glow-a"></div>
+    <div class="backdrop-glow backdrop-glow-b"></div>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="MY-3D-TEST 首页">
+      <span class="brand-mark">3D</span>
+      <span class="brand-copy">
+        <strong>MY-3D-TEST</strong>
+        <small>THREE.JS PLAYGROUND</small>
+      </span>
+    </a>
+    <div class="topbar-meta">
+      <span class="meta-pill"><i class="dot"></i>本地实验场</span>
+      <span class="meta-pill is-muted">Three.js r169</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow"><span></span>SCENE INDEX / 场景索引</p>
+      <h1>一个仓库，<br /><em>多个 3D 世界。</em></h1>
+      <p class="hero-desc">用于试验 Three.js、着色器与交互场景的本地实验场。每个项目独立运行，共享同一份 Three.js 依赖与预览服务器。</p>
+      <div class="hero-stats" aria-live="polite">
+        <span><strong data-count>--</strong> 个场景</span>
+        <span class="stat-rule"></span>
+        <span>共享依赖 <code>shared/vendor/three</code></span>
+        <span class="stat-rule"></span>
+        <span>端口 <code data-port>4173</code></span>
+      </div>
+    </section>
+
+    <section class="catalog" aria-labelledby="catalogTitle">
+      <div class="catalog-head">
+        <div>
+          <p class="eyebrow"><span></span>PROJECTS</p>
+          <h2 id="catalogTitle">所有场景</h2>
+        </div>
+        <div class="filters" data-filters role="group" aria-label="按状态筛选场景"></div>
+      </div>
+      <div class="project-grid" data-grid>
+        <p class="grid-status">正在读取场景清单…</p>
+      </div>
+    </section>
+
+    <section class="howto" aria-labelledby="howtoTitle">
+      <div class="howto-copy">
+        <p class="eyebrow"><span></span>ADD A SCENE</p>
+        <h2 id="howtoTitle">新增一个 3D 项目</h2>
+        <p>在仓库根目录执行脚手架命令，自动复制模板、替换占位符并登记到场景清单。</p>
+        <code class="howto-code">npm run new -- my-scene "我的场景" "一句话描述"</code>
+        <p class="howto-note">启动：<code>npm start</code> 或双击 <code>start.cmd</code>，然后访问 <code data-base-url>http://127.0.0.1:4173/</code>。目录规范与字段说明见根目录 <code>README.md</code>。</p>
+      </div>
+      <ul class="howto-rules">
+        <li><span>01</span>每个场景一个 <code>projects/&lt;slug&gt;/</code> 目录</li>
+        <li><span>02</span>入口固定为项目内的 <code>index.html</code></li>
+        <li><span>03</span>共享 Three.js 用 <code>../../shared/</code> 相对引用</li>
+        <li><span>04</span>在 <code>projects/registry.json</code> 登记后自动出现在本页</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>MY-3D-TEST · LOCAL PLAYGROUND</span>
+    <span>所有场景均为个人视觉实验，非官方作品</span>
+  </footer>
+
+  <noscript><p class="noscript">需要启用 JavaScript 才能读取场景清单。</p></noscript>
+  <script type="module" src="shared/hub/hub.js"></script>
+</body>
+</html>

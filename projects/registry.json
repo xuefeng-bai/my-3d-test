@@ -1,0 +1,22 @@
+{
+  "projects": [
+    {
+      "slug": "seven-eleven",
+      "title": "AFTER HOURS · 街角 7-ELEVEN",
+      "summary": "雨夜街角的程序化便利店场景：可调时间与天气，可环视街区，也能推门走入店内。",
+      "tags": ["Three.js", "电影感", "天气系统", "室内探索"],
+      "status": "active",
+      "entry": "projects/seven-eleven/",
+      "preview": "projects/seven-eleven/preview/hero.png"
+    },
+    {
+      "slug": "n90-snowline",
+      "title": "澎湃雪线 · N90 Max 探索版",
+      "summary": "雪线之上的概念车展示：蓝调群山、可升降观星车顶，以及晴、雪、雨、风暴四种天气。",
+      "tags": ["Three.js", "汽车", "雪山", "座舱"],
+      "status": "archived",
+      "entry": "projects/n90-snowline/",
+      "preview": "projects/n90-snowline/preview/hero.jpg"
+    }
+  ]
+}
