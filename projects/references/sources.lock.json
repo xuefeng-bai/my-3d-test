@@ -1,0 +1,45 @@
+{
+  "policy": "Pinned MIT reference snapshots. Only the static runtime output is vendored; upstream source stays at the linked repository.",
+  "references": [
+    {
+      "slug": "yoru-mart-diorama",
+      "repo": "https://github.com/Halorui-ai/yoru-mart-diorama",
+      "commit": "98c1686f92f8934917456596b7fdbc194c4707fe",
+      "sourcePath": "offline/",
+      "license": "MIT",
+      "syncedAt": "2026-10-19",
+      "localChanges": [
+        "Copied the self-contained offline package to the reference root.",
+        "Injected the VITRINE scene-index back link.",
+        "Added the upstream MIT license, a font OFL license, and this project's documentation."
+      ]
+    },
+    {
+      "slug": "sakura-station-corner",
+      "repo": "https://github.com/fanhuayishiy/ai-demo",
+      "commit": "13a6321601d595ee0a9678bbce8414b18e910e8b",
+      "sourcePath": "sakura-station-corner/dist/",
+      "license": "MIT",
+      "syncedAt": "2026-10-19",
+      "localChanges": [
+        "Copied only the committed static build output; the 128 MB upstream repository is not vendored.",
+        "Injected the VITRINE scene-index back link.",
+        "Added the upstream MIT license and this project's documentation."
+      ]
+    },
+    {
+      "slug": "rainy-night-mart",
+      "repo": "https://github.com/givfei5-hash/rainy-night-mart",
+      "commit": "fab61152105dfcc48ba05f7a978678bfa64587c6",
+      "sourcePath": "index.html",
+      "license": "MIT",
+      "syncedAt": "2026-10-19",
+      "localChanges": [
+        "Rewired the import map from jsDelivr Three.js r161 to VITRINE's shared local Three.js r169.",
+        "Added a data favicon to avoid a missing favicon request.",
+        "Injected the VITRINE scene-index back link.",
+        "Added the upstream MIT license and this project's documentation."
+      ]
+    }
+  ]
+}

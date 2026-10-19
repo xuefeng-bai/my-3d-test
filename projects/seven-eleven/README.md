@@ -4,7 +4,7 @@
 
 > **非官方概念作品。** 本项目为个人视觉实验，与 7-Eleven / Seven & i Holdings 没有任何隶属、授权或合作关系。场景中的门店、陈设与文案均为虚构。
 
-![场景预览](preview/hero.png)
+![场景预览](preview/hero.jpg)
 
 ## 体验入口
 
@@ -32,11 +32,11 @@ npm start
 
 ### 店内
 
-![店内空间](preview/interior.png)
+![店内空间](preview/interior.jpg)
 
 ### 雪夜
 
-![雪夜街角](preview/snow.png)
+![雪夜街角](preview/snow.jpg)
 
 ## 操作
 

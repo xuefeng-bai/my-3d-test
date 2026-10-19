@@ -156,31 +156,59 @@ function checkModuleImports(projectDir, imports, label) {
 
 function checkProject(project) {
   const label = project.slug || '(unnamed)';
-  const expectedEntry = `projects/${label}/`;
+  const kind = project.kind || 'scene';
+  const expectedEntry = kind === 'reference'
+    ? `projects/references/${label}/`
+    : `projects/${label}/`;
 
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(label)) {
     fail(`${label}: slug is not valid kebab-case`);
   }
   if (!project.title) fail(`${label}: missing title`);
+  if (!['scene', 'reference'].includes(kind)) {
+    fail(`${label}: invalid kind "${kind}"`);
+  }
   if (!VALID_STATUS.has(project.status)) fail(`${label}: invalid status "${project.status}"`);
   if (project.entry !== expectedEntry) {
     fail(`${label}: entry should be "${expectedEntry}", got "${project.entry}"`);
   }
-  if (project.preview && !existsSync(path.resolve(rootDir, project.preview))) {
-    fail(`${label}: preview not found: ${project.preview}`);
+  if (project.preview) {
+    const previewPath = path.resolve(rootDir, project.preview);
+    if (!existsSync(previewPath)) {
+      fail(`${label}: preview not found: ${project.preview}`);
+    } else {
+      const previewSize = statSync(previewPath).size;
+      if (previewSize > 500 * 1024) {
+        warn(`${label}: preview is larger than 500 KB (${Math.round(previewSize / 1024)} KB): ${project.preview}`);
+      }
+    }
   }
 
-  const projectDir = path.join(projectsDir, label);
+  if (kind === 'reference') {
+    if (!project.source) fail(`${label}: reference is missing source URL`);
+    if (!project.license) fail(`${label}: reference is missing license`);
+    if (!project.syncCommit) fail(`${label}: reference is missing syncCommit`);
+  }
+
+  const projectDir = path.join(rootDir, expectedEntry);
   if (!existsSync(projectDir)) {
     fail(`${label}: directory not found: ${expectedEntry}`);
     return;
   }
-  if (!existsSync(path.join(projectDir, 'README.md'))) {
-    fail(`${label}: missing README.md`);
+  for (const required of kind === 'reference'
+    ? ['index.html', 'README.md', 'LICENSE', 'SOURCE.md']
+    : ['index.html', 'README.md']) {
+    if (!existsSync(path.join(projectDir, required))) {
+      fail(`${label}: missing ${required}`);
+    }
   }
 
-  const imports = readImportMap(projectDir, label);
-  if (imports) checkModuleImports(projectDir, imports, label);
+  // First-party scenes must use the shared Three.js import map. External
+  // references keep their own pinned build and are checked separately.
+  if (kind === 'scene') {
+    const imports = readImportMap(projectDir, label);
+    if (imports) checkModuleImports(projectDir, imports, label);
+  }
 }
 
 console.log('');

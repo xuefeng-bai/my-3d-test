@@ -316,6 +316,60 @@ main {
   padding-top: 28px;
 }
 
+.reference-catalog {
+  margin-top: 96px;
+  padding-top: 64px;
+  border-top: 1px solid var(--line);
+}
+
+.reference-catalog[hidden] {
+  display: none;
+}
+
+.reference-head-note {
+  max-width: 430px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  text-align: right;
+}
+
+.reference-catalog .project-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.reference-catalog .card-body {
+  padding: 18px 18px 16px;
+}
+
+.reference-catalog .card-title {
+  font-size: 18px;
+}
+
+.reference-catalog .card-summary {
+  font-size: 12.5px;
+}
+
+.reference-footnote {
+  margin: 18px 0 0;
+  color: var(--faint);
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+}
+
+.project-card.is-reference {
+  border-color: rgba(154, 189, 224, 0.22);
+  background: linear-gradient(180deg, rgba(23, 28, 35, 0.94), rgba(12, 15, 19, 0.96));
+}
+
+.project-card.is-reference:hover {
+  border-color: rgba(154, 189, 224, 0.42);
+  box-shadow: 0 24px 60px rgba(19, 36, 54, 0.34);
+}
+
 .project-card {
   display: flex;
   flex-direction: column;
@@ -440,6 +494,11 @@ main {
 .status-badge.tone-archived {
   border-color: rgba(142, 155, 176, 0.35);
   color: var(--slate);
+}
+
+.status-badge.tone-reference {
+  border-color: rgba(154, 189, 224, 0.4);
+  color: #b7d0ea;
 }
 
 .card-index {
@@ -653,9 +712,21 @@ main {
   font-size: 12px;
 }
 
+@media (max-width: 1180px) {
+  .reference-catalog .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 900px) {
-  .project-grid {
+  .project-grid,
+  .reference-catalog .project-grid {
     grid-template-columns: 1fr;
+  }
+
+  .reference-head-note {
+    max-width: none;
+    text-align: left;
   }
 
   .howto {
@@ -669,6 +740,11 @@ main {
 
   .catalog {
     margin-top: 64px;
+  }
+
+  .reference-catalog {
+    margin-top: 72px;
+    padding-top: 48px;
   }
 }
 

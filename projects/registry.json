@@ -7,7 +7,7 @@
       "tags": ["Three.js", "电影感", "天气系统", "室内探索"],
       "status": "active",
       "entry": "projects/seven-eleven/",
-      "preview": "projects/seven-eleven/preview/hero.png"
+      "preview": "projects/seven-eleven/preview/hero.jpg"
     },
     {
       "slug": "n90-snowline",
@@ -17,6 +17,45 @@
       "status": "archived",
       "entry": "projects/n90-snowline/",
       "preview": "projects/n90-snowline/preview/hero.jpg"
+    },
+    {
+      "slug": "yoru-mart-diorama",
+      "title": "雨夜便利店 · Yoru Mart",
+      "summary": "雨夜日式便利店街角的卡通渲染微缩模型，自带完全离线包，拖动即可环视。",
+      "tags": ["Three.js", "参考案例", "雨夜", "便利店"],
+      "status": "active",
+      "kind": "reference",
+      "source": "https://github.com/Halorui-ai/yoru-mart-diorama",
+      "license": "MIT",
+      "syncCommit": "98c1686f92f8934917456596b7fdbc194c4707fe",
+      "entry": "projects/references/yoru-mart-diorama/",
+      "preview": "projects/references/yoru-mart-diorama/preview/hero.jpg"
+    },
+    {
+      "slug": "sakura-station-corner",
+      "title": "樱花街角 · 电车与便利店",
+      "summary": "日式乡村车站街角，102 个独立资产模块、完整便利店内部与五档天气切换。",
+      "tags": ["Three.js", "参考案例", "街角", "微缩模型"],
+      "status": "active",
+      "kind": "reference",
+      "source": "https://github.com/fanhuayishiy/ai-demo",
+      "license": "MIT",
+      "syncCommit": "13a6321601d595ee0a9678bbce8414b18e910e8b",
+      "entry": "projects/references/sakura-station-corner/",
+      "preview": "projects/references/sakura-station-corner/preview/hero.jpg"
+    },
+    {
+      "slug": "rainy-night-mart",
+      "title": "雨夜便利店街角 · Rainy Night Mart",
+      "summary": "单文件雨夜便利店微缩场景：自动门、积水倒影、红绿灯与店内货架陈设。",
+      "tags": ["Three.js", "参考案例", "雨夜", "单文件"],
+      "status": "active",
+      "kind": "reference",
+      "source": "https://github.com/givfei5-hash/rainy-night-mart",
+      "license": "MIT",
+      "syncCommit": "fab61152105dfcc48ba05f7a978678bfa64587c6",
+      "entry": "projects/references/rainy-night-mart/",
+      "preview": "projects/references/rainy-night-mart/preview/hero.jpg"
     }
   ]
 }

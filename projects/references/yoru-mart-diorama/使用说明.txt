@@ -1,0 +1,11 @@
+雨夜便利店  ·  离线版
+
+双击 index.html，用 Chrome / Edge / Safari / Firefox 打开即可。
+不需要联网，也不需要安装。
+
+操作
+  · 拖动：旋转
+  · 滚轮 / 双指：缩放
+  · 右键拖动 / 两指拖动：平移
+
+请保持文件夹完整：index.html、fonts、textures 需要在同一目录。

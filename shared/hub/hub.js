@@ -9,6 +9,9 @@ const STATUS_ORDER = ['active', 'wip', 'archived'];
 const grid = document.querySelector('[data-grid]');
 const filterBar = document.querySelector('[data-filters]');
 const countEl = document.querySelector('[data-count]');
+const referenceSection = document.querySelector('[data-reference-section]');
+const referenceGrid = document.querySelector('[data-reference-grid]');
+const referenceCountEl = document.querySelector('[data-ref-count]');
 
 if (location.protocol === 'http:' || location.protocol === 'https:') {
   const baseUrl = `${location.origin}/`;
@@ -35,15 +38,17 @@ function createPlaceholder(project) {
   return wrap;
 }
 
-function createCard(project, index) {
-  const status = STATUS[project.status] || {
-    label: project.status || '未标记',
-    tone: 'archived',
-  };
+function createCard(project, index, isReference = false) {
+  const status = isReference
+    ? { label: '参考案例', tone: 'reference' }
+    : (STATUS[project.status] || {
+      label: project.status || '未标记',
+      tone: 'archived',
+    });
 
-  const card = make('a', 'project-card');
+  const card = make('a', isReference ? 'project-card is-reference' : 'project-card');
   card.href = project.entry;
-  card.setAttribute('aria-label', `打开场景：${project.title}`);
+  card.setAttribute('aria-label', `${isReference ? '打开参考案例' : '打开场景'}：${project.title}`);
   card.style.setProperty('--i', String(index));
 
   const preview = make('div', 'card-preview');
@@ -51,7 +56,7 @@ function createCard(project, index) {
     const img = make('img');
     img.src = project.preview;
     img.alt = `${project.title} 预览图`;
-    img.loading = index < 2 ? 'eager' : 'lazy';
+    img.loading = isReference ? 'eager' : (index < 2 ? 'eager' : 'lazy');
     img.decoding = 'async';
     img.addEventListener('error', () => {
       img.remove();
@@ -65,7 +70,9 @@ function createCard(project, index) {
   }
 
   preview.append(make('span', `status-badge tone-${status.tone}`, status.label));
-  preview.append(make('span', 'card-index', String(index + 1).padStart(2, '0')));
+  preview.append(make('span', 'card-index', isReference
+    ? `R${String(index + 1).padStart(2, '0')}`
+    : String(index + 1).padStart(2, '0')));
 
   const body = make('div', 'card-body');
   body.append(make('h3', 'card-title', project.title));
@@ -78,21 +85,23 @@ function createCard(project, index) {
   body.append(tags);
 
   const meta = make('div', 'card-meta');
-  meta.append(make('code', '', project.entry.replace(/\/$/, '')));
-  meta.append(make('span', 'card-open', '打开场景 ↗'));
+  meta.append(make('code', '', isReference
+    ? `${(project.license || 'EXTERNAL').toUpperCase()} · REFERENCE`
+    : project.entry.replace(/\/$/, '')));
+  meta.append(make('span', 'card-open', isReference ? '打开案例 ↗' : '打开场景 ↗'));
   body.append(meta);
 
   card.append(preview, body);
   return card;
 }
 
-function renderFilters() {
+function renderFilters(list = projects) {
   const counts = new Map();
-  for (const project of projects) {
+  for (const project of list) {
     counts.set(project.status, (counts.get(project.status) || 0) + 1);
   }
 
-  const options = [{ key: 'all', label: '全部', count: projects.length }];
+  const options = [{ key: 'all', label: '全部', count: list.length }];
   for (const key of STATUS_ORDER) {
     if (counts.has(key)) {
       options.push({ key, label: STATUS[key].label, count: counts.get(key) });
@@ -120,24 +129,39 @@ function applyFilter(key) {
 }
 
 function render() {
-  countEl.textContent = String(projects.length);
+  const ownProjects = projects.filter((project) => (project.kind || 'scene') !== 'reference');
+  const referenceProjects = projects.filter((project) => project.kind === 'reference');
+
+  countEl.textContent = String(ownProjects.length);
+  if (referenceCountEl) referenceCountEl.textContent = String(referenceProjects.length);
+
   grid.replaceChildren();
   cards = [];
 
-  if (projects.length === 0) {
-    grid.append(make('p', 'grid-status', '还没有场景。执行 npm run new -- my-scene 创建第一个 3D 项目。'));
+  if (ownProjects.length === 0) {
+    grid.append(make('p', 'grid-status', '还没有原创场景。执行 npm run new -- my-scene 创建第一个 3D 项目。'));
     filterBar.replaceChildren();
-    return;
+  } else {
+    ownProjects.forEach((project, index) => {
+      const card = createCard(project, index);
+      grid.append(card);
+      cards.push({ project, card });
+    });
+    renderFilters(ownProjects);
+    applyFilter(activeFilter);
   }
 
-  projects.forEach((project, index) => {
-    const card = createCard(project, index);
-    grid.append(card);
-    cards.push({ project, card });
-  });
-
-  renderFilters();
-  applyFilter(activeFilter);
+  if (referenceGrid) {
+    referenceGrid.replaceChildren();
+    if (referenceProjects.length > 0) {
+      referenceProjects.forEach((project, index) => {
+        referenceGrid.append(createCard(project, index, true));
+      });
+      if (referenceSection) referenceSection.hidden = false;
+    } else if (referenceSection) {
+      referenceSection.hidden = true;
+    }
+  }
 }
 
 async function load() {
@@ -151,6 +175,8 @@ async function load() {
     render();
   } catch (error) {
     countEl.textContent = '0';
+    if (referenceCountEl) referenceCountEl.textContent = '0';
+    if (referenceSection) referenceSection.hidden = true;
     const hint = make('p', 'grid-status is-error');
     hint.textContent = '无法读取 projects/registry.json。请通过 npm start 启动本地服务器后访问，而不是直接双击 index.html。';
     grid.replaceChildren(hint);

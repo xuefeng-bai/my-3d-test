@@ -28,6 +28,7 @@ const MIME = {
   '.woff': 'font/woff',
   '.woff2': 'font/woff2',
   '.txt': 'text/plain; charset=utf-8',
+  '.md': 'text/markdown; charset=utf-8',
   '.map': 'application/json; charset=utf-8',
 };
 
@@ -48,9 +49,18 @@ function resolveRequestPath(rawUrl) {
     return null;
   }
   if (pathname === '/' || pathname === '') pathname = '/index.html';
-  // Project folders are served with directory-style URLs.
-  if (pathname.endsWith('/')) pathname += 'index.html';
-  else if (path.extname(pathname) === '') pathname += '/index.html';
+  // Project folders are served with directory-style URLs. An extensionless
+  // request may also point at an actual file (for example a LICENSE file).
+  if (pathname.endsWith('/')) {
+    pathname += 'index.html';
+  } else if (path.extname(pathname) === '') {
+    const candidate = path.resolve(ROOT, `.${pathname}`);
+    const isFile = candidate !== ROOT
+      && candidate.startsWith(`${ROOT}${path.sep}`)
+      && fs.existsSync(candidate)
+      && fs.statSync(candidate).isFile();
+    if (!isFile) pathname += '/index.html';
+  }
   const filePath = path.resolve(ROOT, `.${pathname}`);
   if (filePath !== ROOT && !filePath.startsWith(`${ROOT}${path.sep}`)) return null;
   return filePath;

@@ -34,11 +34,13 @@
     <section class="hero">
       <p class="eyebrow"><span></span>SCENE INDEX / 场景索引</p>
       <h1>一个仓库，<br /><em>多个 3D 世界。</em></h1>
-      <p class="hero-desc">用于试验 Three.js、着色器与交互场景的本地场景库。每个项目独立运行，共享同一份 Three.js 依赖与预览服务器。</p>
+      <p class="hero-desc">用于试验 Three.js、着色器与交互场景的本地场景库。原创场景独立运行并共享 Three.js 依赖；另设开源参考案例区，保留各案例固定的版本。</p>
       <div class="hero-stats" aria-live="polite">
-        <span><strong data-count>--</strong> 个场景</span>
+        <span><strong data-count>--</strong> 个原创场景</span>
         <span class="stat-rule"></span>
-        <span>共享依赖 <code>shared/vendor/three</code></span>
+        <span><strong data-ref-count>--</strong> 个参考案例</span>
+        <span class="stat-rule"></span>
+        <span>基础依赖 <code>shared/vendor/three</code></span>
         <span class="stat-rule"></span>
         <span>端口 <code data-port>4173</code></span>
       </div>
@@ -48,13 +50,25 @@
       <div class="catalog-head">
         <div>
           <p class="eyebrow"><span></span>PROJECTS</p>
-          <h2 id="catalogTitle">所有场景</h2>
+          <h2 id="catalogTitle">原创场景</h2>
         </div>
         <div class="filters" data-filters role="group" aria-label="按状态筛选场景"></div>
       </div>
       <div class="project-grid" data-grid>
         <p class="grid-status">正在读取场景清单…</p>
       </div>
+    </section>
+
+    <section class="catalog reference-catalog" data-reference-section hidden aria-labelledby="referenceTitle">
+      <div class="catalog-head">
+        <div>
+          <p class="eyebrow"><span></span>REFERENCE LIBRARY</p>
+          <h2 id="referenceTitle">参考案例</h2>
+        </div>
+        <p class="reference-head-note">来自开源社区的同主题 3D 场景。固定版本、本地化托管，保留原作者、许可证与各自打包的 Three.js 版本。</p>
+      </div>
+      <div class="project-grid" data-reference-grid></div>
+      <p class="reference-footnote">外部参考案例，非本项目原创；各案例的版权、许可证与改动记录见项目内 LICENSE / SOURCE.md。</p>
     </section>
 
     <section class="howto" aria-labelledby="howtoTitle">
@@ -76,7 +90,7 @@
 
   <footer class="footer">
     <span>VITRINE · 3D SCENE ARCHIVE</span>
-    <span>所有场景均为个人视觉实验，非官方作品</span>
+    <span>原创场景为个人视觉实验；参考案例版权归原作者所有，非官方作品</span>
   </footer>
 
   <noscript><p class="noscript">需要启用 JavaScript 才能读取场景清单。</p></noscript>
