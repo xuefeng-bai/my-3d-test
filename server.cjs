@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Zero-dependency static server for MY-3D-TEST. Every scene is generated in
+ * Zero-dependency static server for VITRINE. Every scene is generated in
  * the browser, so this only serves files for all projects under projects/
  * (ES modules do not work from file:// URLs).
  */
@@ -166,7 +166,7 @@ server.on('error', (error) => {
 server.listen(PORT, '127.0.0.1', () => {
   const projects = loadRegistry();
   console.log('');
-  console.log('  MY-3D-TEST - 3D Playground');
+  console.log('  VITRINE - 3D Scene Archive');
   console.log(`  Scene index: http://127.0.0.1:${PORT}/`);
   for (const project of projects) {
     const entry = String(project.entry).replace(/^\//, '');

@@ -184,7 +184,7 @@ function checkProject(project) {
 }
 
 console.log('');
-console.log('  MY-3D-TEST project check');
+console.log('  VITRINE project check');
 console.log('');
 
 for (const relativePath of ['index.html', 'README.md', 'server.cjs', 'package.json', 'shared/hub/hub.css', 'shared/hub/hub.js']) {
