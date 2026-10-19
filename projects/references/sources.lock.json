@@ -19,6 +19,51 @@
       ]
     },
     {
+      "slug": "union-square-sf",
+      "repo": "https://github.com/PhiloLabs/fable51-worlds",
+      "commit": "d24028466530a15d58d3d94537e6317b84101589",
+      "sourcePath": "union-square-sf/",
+      "model": "Claude Fable 5.1",
+      "collection": "claude",
+      "license": "MIT",
+      "syncedAt": "2026-10-19",
+      "localChanges": [
+        "Ran the upstream data sync and Vite build with a relative base path.",
+        "Added a data favicon, the VITRINE back link (top-left placement), and an in-viewer OSM/GSI credit.",
+        "Added the MIT license, OpenStreetMap/GSI attribution, and project documentation."
+      ]
+    },
+    {
+      "slug": "factory-yard",
+      "repo": "https://github.com/Khalidabdi1/factory",
+      "commit": "438473a612ec8364f0046fb961133766da0c0be9",
+      "sourcePath": "out/",
+      "model": "Claude Opus 5.5",
+      "collection": "claude",
+      "license": "MIT",
+      "syncedAt": "2026-10-19",
+      "localChanges": [
+        "Built the Next.js app with output: 'export' and a VITRINE basePath.",
+        "Added a data favicon and the VITRINE back link (bottom-center placement).",
+        "Added the MIT license, DM Mono OFL license, and project documentation."
+      ]
+    },
+    {
+      "slug": "death-star-trench-run",
+      "repo": "https://github.com/PhiloLabs/fable51-worlds",
+      "commit": "d24028466530a15d58d3d94537e6317b84101589",
+      "sourcePath": "death-star-trench-run/",
+      "model": "Claude Fable 5.1",
+      "collection": "claude",
+      "license": "MIT",
+      "syncedAt": "2026-10-19",
+      "localChanges": [
+        "Built the upstream Vite source with a relative base path.",
+        "Added a data favicon and the VITRINE back link (top-center placement).",
+        "Added the MIT license, trademark disclaimer, and project documentation."
+      ]
+    },
+    {
       "slug": "yoru-mart-diorama",
       "repo": "https://github.com/Halorui-ai/yoru-mart-diorama",
       "commit": "98c1686f92f8934917456596b7fdbc194c4707fe",

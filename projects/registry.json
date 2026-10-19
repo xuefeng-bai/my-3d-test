@@ -33,6 +33,48 @@
       "preview": "projects/references/kyoto-higashiyama/preview/hero.jpg"
     },
     {
+      "slug": "union-square-sf",
+      "title": "联合广场 · Union Square SF",
+      "summary": "旧金山联合广场的可步行数字孪生：真实街区、行人、车流、店内空间与昼夜光照。",
+      "tags": ["Three.js", "Claude 精选", "旧金山", "数字孪生"],
+      "status": "active",
+      "kind": "reference",
+      "collection": "claude",
+      "source": "https://github.com/PhiloLabs/fable51-worlds",
+      "license": "MIT",
+      "syncCommit": "d24028466530a15d58d3d94537e6317b84101589",
+      "entry": "projects/references/union-square-sf/",
+      "preview": "projects/references/union-square-sf/preview/hero.jpg"
+    },
+    {
+      "slug": "factory-yard",
+      "title": "Factory Yard · 实时等距小镇",
+      "summary": "Claude Opus 5.5 生成的实时等距世界：工厂物流、海边小镇、新城、港口与发射场持续运转。",
+      "tags": ["Three.js", "Claude 精选", "等距", "模拟"],
+      "status": "active",
+      "kind": "reference",
+      "collection": "claude",
+      "source": "https://github.com/Khalidabdi1/factory",
+      "license": "MIT",
+      "syncCommit": "438473a612ec8364f0046fb961133766da0c0be9",
+      "entry": "projects/references/factory-yard/",
+      "preview": "projects/references/factory-yard/preview/hero.jpg"
+    },
+    {
+      "slug": "death-star-trench-run",
+      "title": "TRENCH RUN · Battle of Yavin",
+      "summary": "程序化实时战壕突袭：X-wing、TIE fighter、激光、鱼雷与电影式镜头，可手动驾驶或自动飞行。",
+      "tags": ["Three.js", "Claude 精选", "太空", "可驾驶"],
+      "status": "active",
+      "kind": "reference",
+      "collection": "claude",
+      "source": "https://github.com/PhiloLabs/fable51-worlds",
+      "license": "MIT",
+      "syncCommit": "d24028466530a15d58d3d94537e6317b84101589",
+      "entry": "projects/references/death-star-trench-run/",
+      "preview": "projects/references/death-star-trench-run/preview/hero.jpg"
+    },
+    {
       "slug": "yoru-mart-diorama",
       "title": "雨夜便利店 · Yoru Mart",
       "summary": "雨夜日式便利店街角的卡通渲染微缩模型，自带完全离线包，拖动即可环视。",

@@ -30,8 +30,11 @@ vitrine/
 │  ├─ seven-eleven/           # 场景：AFTER HOURS · 街角 7-ELEVEN
 │  ├─ n90-snowline/           # 场景：澎湃雪线 · N90 Max（已归档）
 │  └─ references/             # 第三方参考案例（固定 commit + 许可证）
-│     ├─ sources.lock.json    # 参考案例的上游与同步记录
-│     ├─ kyoto-higashiyama/   # Claude 精选：京都东山可行走街景
+│     ├─ sources.lock.json      # 参考案例的上游与同步记录
+│     ├─ kyoto-higashiyama/     # Claude 精选：京都东山可行走街景
+│     ├─ union-square-sf/       # Claude 精选：旧金山联合广场数字孪生
+│     ├─ factory-yard/          # Claude 精选：实时等距工厂小镇
+│     ├─ death-star-trench-run/ # Claude 精选：实时战壕突袭
 │     ├─ yoru-mart-diorama/
 │     ├─ sakura-station-corner/
 │     └─ rainy-night-mart/
@@ -62,11 +65,14 @@ vitrine/
 | 案例 | 上游 | 生成模型 | 同步版本 | 许可证 |
 | --- | --- | --- | --- | --- |
 | **東山 · Higashiyama, Kyoto**（Claude 精选） | [PhiloLabs/fable51-worlds](https://github.com/PhiloLabs/fable51-worlds) | Claude Fable 5.1 | `d240284` | MIT |
+| **联合广场 · Union Square SF**（Claude 精选） | [PhiloLabs/fable51-worlds](https://github.com/PhiloLabs/fable51-worlds) | Claude Fable 5.1 | `d240284` | MIT |
+| **Factory Yard · 实时等距小镇**（Claude 精选） | [Khalidabdi1/factory](https://github.com/Khalidabdi1/factory) | Claude Opus 5.5 | `438473a` | MIT |
+| **TRENCH RUN · Battle of Yavin**（Claude 精选） | [PhiloLabs/fable51-worlds](https://github.com/PhiloLabs/fable51-worlds) | Claude Fable 5.1 | `d240284` | MIT |
 | 雨夜便利店 · Yoru Mart | [Halorui-ai/yoru-mart-diorama](https://github.com/Halorui-ai/yoru-mart-diorama) | — | `98c1686` | MIT |
 | 樱花街角 · 电车与便利店 | [fanhuayishiy/ai-demo](https://github.com/fanhuayishiy/ai-demo) | — | `13a6321` | MIT |
 | 雨夜便利店街角 · Rainy Night Mart | [givfei5-hash/rainy-night-mart](https://github.com/givfei5-hash/rainy-night-mart) | — | `fab6115` | MIT |
 
-京都案例带有 `collection: "claude"` 与 `Claude 精选` 标记；这是当前参考案例中完成度最高、交互最完整的作品。
+Claude 精选案例带有 `collection: "claude"` 标记；首页使用金色强调、`Claude 精选` 徽章和 `C` 编号。它们都是独立静态产物，可以单独移除，不影响原创场景。
 
 入口均相对于 `http://127.0.0.1:4173`。原创场景状态取值：`active`（维护中）、`wip`（开发中）、`archived`（已归档）。参考案例使用 `kind: "reference"` 与独立区块展示，不混入原创场景计数。
 
@@ -177,7 +183,7 @@ npm run check
 
 ## 共享依赖升级
 
-`shared/vendor/three/` 目前为 Three.js r169。升级时替换该目录，并逐一回归使用共享依赖的原创场景与 `rainy-night-mart`；自带打包 Three.js 的 `kyoto-higashiyama`（r180）、`yoru-mart-diorama` 和 `sakura-station-corner`（r186）不受共享依赖升级影响。
+`shared/vendor/three/` 目前为 Three.js r169。升级时替换该目录，并逐一回归使用共享依赖的原创场景与 `rainy-night-mart`；自带打包 Three.js 的 `kyoto-higashiyama`（r180）、`union-square-sf`（r185）、`factory-yard`（r186.1）、`death-star-trench-run`（r185.1）、`yoru-mart-diorama` 和 `sakura-station-corner`（r186）不受共享依赖升级影响。
 
 ## 说明
 
