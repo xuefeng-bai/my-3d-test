@@ -1,0 +1,244 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#071018" />
+  <meta name="description" content="小米澎程 N90 Max 探索版 · 雪境探索沉浸式 3D 场景。自由环视、进入座舱、升起观星车顶，感受雪线之上的天气与光影。" />
+  <title>小米澎程 N90 Max 探索版 · 雪境探索</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23ff6900'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='30' font-weight='700' fill='white'%3Emi%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="is-loading">
+  <div id="app">
+    <canvas id="scene" aria-label="雪山顶上的小米澎程 N90 Max 探索版三维场景"></canvas>
+
+    <div class="atmosphere" aria-hidden="true">
+      <div class="vignette"></div>
+      <div class="grain"></div>
+      <div class="lightning-flash" id="lightningFlash"></div>
+    </div>
+
+    <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <symbol id="i-sun" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3.6"></circle>
+          <path d="M12 2.4v2.2M12 19.4v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.4 12h2.2M19.4 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"></path>
+        </symbol>
+        <symbol id="i-snow" viewBox="0 0 24 24">
+          <path d="M12 2.8v18.4M4 7.4l16 9.2M20 7.4L4 16.6"></path>
+          <path d="M9.6 4.8L12 6.8l2.4-2M9.6 19.2L12 17.2l2.4 2M4.9 10.4l.4 3.2-2.6 1.3M19.1 13.6l-.4-3.2 2.6-1.3M4.9 13.6l2.6-1.3-.4-3.2M19.1 10.4l-2.6 1.3.4 3.2"></path>
+        </symbol>
+        <symbol id="i-rain" viewBox="0 0 24 24">
+          <path d="M6.2 14.6h11.2a3.5 3.5 0 0 0 .2-7 5.4 5.4 0 0 0-10.3-1.4A4.2 4.2 0 0 0 6.2 14.6Z"></path>
+          <path d="M7.2 17.4 6 20.2M12 17.4l-1.2 2.8M16.8 17.4l-1.2 2.8"></path>
+        </symbol>
+        <symbol id="i-storm" viewBox="0 0 24 24">
+          <path d="M3 8.2h10.2a2.7 2.7 0 1 0-2.7-2.7M3 12.2h15.3a2.9 2.9 0 1 1-2.9 2.9M3 16.4h6"></path>
+          <path d="m14.1 15.2 2.1 2.2-2.1 2.2 2.1 2.2"></path>
+        </symbol>
+        <symbol id="i-car" viewBox="0 0 24 24">
+          <path d="M4.2 15.2h15.6M5.8 15.2l1.4-4.5a2 2 0 0 1 1.9-1.4h6.2a2 2 0 0 1 1.9 1.4l1.4 4.5"></path>
+          <path d="M5 15.2v2.1h3v-1.1h8v1.1h3v-2.1M7.8 12.4h8.4"></path>
+          <circle cx="7.7" cy="16.1" r=".8"></circle>
+          <circle cx="16.3" cy="16.1" r=".8"></circle>
+        </symbol>
+        <symbol id="i-cockpit" viewBox="0 0 24 24">
+          <path d="M4 17.6h16M6.2 17.6l1.1-6.2a2 2 0 0 1 2-1.7h5.4a2 2 0 0 1 2 1.7l1.1 6.2"></path>
+          <path d="M8.2 13.2h7.6M12 9.7V7.2M9.2 4.8h5.6l1.2 2.4H8L9.2 4.8Z"></path>
+        </symbol>
+        <symbol id="i-roof" viewBox="0 0 24 24">
+          <path d="M5.8 5.6h12.4v3H5.8zM8.4 12.5v4.3M15.6 12.5v4.3M8.4 16.8h7.2"></path>
+          <path d="M4 20h16M12 3v2.6M10.7 4.6 12 3l1.3 1.6"></path>
+        </symbol>
+        <symbol id="i-orbit" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.7 8.6c1.7 3 .8 6.1-2.1 7.8-3.7 2.1-9.6 1.1-12.6-2.3-2.1-2.4-1.5-5 .9-6.7"></path>
+          <path d="m4.4 4.8.2 3.1 3-.6"></path>
+        </symbol>
+        <symbol id="i-reset" viewBox="0 0 24 24">
+          <path d="M4.2 11.6a8 8 0 1 0 2.4-5.9"></path>
+          <path d="M4.1 4.2v5.1h5.1"></path>
+        </symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24">
+          <path d="M5 12h13M13 6.8l5.2 5.2-5.2 5.2"></path>
+        </symbol>
+        <symbol id="i-chevron" viewBox="0 0 24 24">
+          <path d="m7 14 5-5 5 5"></path>
+        </symbol>
+      </defs>
+    </svg>
+
+    <div class="loader" id="loader" role="status" aria-live="polite">
+      <div class="loader-glow loader-glow-a"></div>
+      <div class="loader-glow loader-glow-b"></div>
+      <div class="loader-inner">
+        <div class="loader-brand">
+          <span class="mi-badge">mi</span>
+          <span>XIAOMI AUTO</span>
+        </div>
+        <div class="loader-overline">SNOWLINE EXPEDITION / 2026</div>
+        <div class="loader-title">澎程 N90 <i>Max</i></div>
+        <div class="loader-sub">探索版 · 雪境概念体验</div>
+        <div class="loader-track"><i id="loaderBar"></i></div>
+        <div class="loader-meta">
+          <span id="loaderStatus">正在驶入雪线</span>
+          <span id="loaderPct">00</span>
+        </div>
+      </div>
+      <div class="loader-foot">
+        <span>北纬 29° 35′ 18″</span>
+        <span>海拔 4,860 M</span>
+        <span>BLUE HOUR · 17:42</span>
+      </div>
+    </div>
+
+    <div class="scene-fade" id="sceneFade" aria-hidden="true"></div>
+
+    <div class="webgl-error" id="webglError" hidden>
+      <div class="webgl-error-card">
+        <span class="mi-badge">mi</span>
+        <h2>雪境暂时无法加载</h2>
+        <p>当前浏览器未能启用 WebGL 2。请尝试使用最新版 Chrome、Edge 或 Safari，并确认硬件加速已开启。</p>
+      </div>
+    </div>
+
+    <header class="hud-top" id="hudTop">
+      <div class="brand-lockup" aria-label="Xiaomi 小米汽车">
+        <span class="mi-badge">mi</span>
+        <span class="brand-text"><strong>XIAOMI</strong><small>小米汽车</small></span>
+        <span class="brand-divider"></span>
+        <span class="brand-model">N90 MAX<small>探索版</small></span>
+      </div>
+      <div class="top-pill">
+        <span class="live-dot"></span>
+        <span>雪境探索计划</span>
+        <span class="pill-divider"></span>
+        <span id="clock">17:42</span>
+        <span class="pill-divider"></span>
+        <span id="altitude">海拔 4,860 m</span>
+      </div>
+      <div class="telemetry" id="telemetry">
+        <div class="telemetry-main"><span id="tempTelemetry">−18</span><sup>°C</sup></div>
+        <div class="telemetry-side"><span id="windTelemetry">西北风 · 4 级</span><span id="airTelemetry">含氧量 59%</span></div>
+      </div>
+    </header>
+
+    <main class="hero-copy" id="heroCopy">
+      <div class="eyebrow"><span class="eyebrow-line"></span>ABOVE THE SNOWLINE <i>/</i> 雪线之上</div>
+      <h1>澎程 <span class="hero-n90">N90</span><br /><span class="hero-max">Max <em>探索版</em></span></h1>
+      <p class="hero-desc">为极寒与远方而生。全域智能四驱与观星升顶座舱，把风雪隔绝在窗外，把整片星空留给抵达的人。</p>
+      <div class="hero-tags">
+        <span><i>01</i> CLTC 1,280 km</span>
+        <span><i>02</i> 观星升顶座舱</span>
+        <span><i>03</i> 全域智能四驱</span>
+      </div>
+      <div class="hero-coordinate" aria-hidden="true">29°35′N&nbsp;&nbsp;101°52′E&nbsp;&nbsp;/&nbsp;&nbsp;4,860 M</div>
+    </main>
+
+    <aside class="spec-panel" id="specPanel" aria-label="车辆核心参数">
+      <div class="spec-item">
+        <span class="spec-index">01</span>
+        <div><b>1,280<em>km</em></b><small>CLTC 综合续航</small></div>
+      </div>
+      <span class="spec-rule"></span>
+      <div class="spec-item">
+        <span class="spec-index">02</span>
+        <div><b>3.9<em>s</em></b><small>零百加速</small></div>
+      </div>
+      <span class="spec-rule"></span>
+      <div class="spec-item">
+        <span class="spec-index">03</span>
+        <div><b>−30<em>°C</em></b><small>极寒工况验证</small></div>
+      </div>
+    </aside>
+
+    <section class="weather-panel" id="weatherPanel" aria-labelledby="weatherTitle">
+      <div class="panel-head">
+        <div>
+          <span class="panel-kicker">ATMOSPHERE</span>
+          <h2 id="weatherTitle">天气场</h2>
+        </div>
+        <div class="weather-head-actions">
+          <div class="weather-live"><span class="weather-dot"></span><span id="weatherLabel">漫天飞雪</span></div>
+          <button type="button" class="panel-collapse" id="weatherToggle" aria-expanded="true" aria-controls="weatherIntensity" aria-label="展开或收起天气控制">
+            <svg class="icon"><use href="#i-chevron"></use></svg>
+          </button>
+        </div>
+      </div>
+      <div class="weather-tabs" role="group" aria-label="选择天气">
+        <button type="button" class="weather-tab" data-weather="clear" aria-pressed="false">
+          <svg class="icon"><use href="#i-sun"></use></svg><span>晴</span><small>CLEAR</small>
+        </button>
+        <button type="button" class="weather-tab is-active" data-weather="snow" aria-pressed="true">
+          <svg class="icon"><use href="#i-snow"></use></svg><span>雪</span><small>SNOW</small>
+        </button>
+        <button type="button" class="weather-tab" data-weather="rain" aria-pressed="false">
+          <svg class="icon"><use href="#i-rain"></use></svg><span>雨</span><small>RAIN</small>
+        </button>
+        <button type="button" class="weather-tab" data-weather="storm" aria-pressed="false">
+          <svg class="icon"><use href="#i-storm"></use></svg><span>风暴</span><small>STORM</small>
+        </button>
+      </div>
+      <div class="weather-intensity" id="weatherIntensity">
+        <div class="intensity-head">
+          <label for="intensity">降水强度</label>
+          <output id="intensityOut" for="intensity">62%</output>
+        </div>
+        <input type="range" id="intensity" min="0" max="100" value="62" aria-label="降水强度" />
+        <div class="intensity-scale"><span>微量</span><span>强</span></div>
+      </div>
+      <div class="weather-foot">
+        <span id="weatherNote">粉雪 · 视程约 8 km</span>
+        <span class="weather-signal"><i></i><i></i><i></i></span>
+      </div>
+    </section>
+
+    <div class="view-hint" id="viewHint"><span class="mouse-glyph"></span>拖动旋转 <i>·</i> 滚轮缩放 <i>·</i> 双击复位</div>
+    <div class="cabin-hint" id="cabinHint">
+      <span class="cabin-rec"><i></i>COCKPIT VIEW</span>
+      <span>座舱视角 · 拖动环视 · 按 ESC 退出</span>
+    </div>
+
+    <nav class="dock" id="dock" aria-label="场景控制">
+      <div class="mode-switch" role="group" aria-label="视角模式">
+        <button type="button" class="mode-btn is-active" data-view="exterior" aria-pressed="true">
+          <svg class="icon"><use href="#i-car"></use></svg><span>外观</span>
+        </button>
+        <button type="button" class="mode-btn" data-view="interior" aria-pressed="false">
+          <svg class="icon"><use href="#i-cockpit"></use></svg><span>座舱</span>
+        </button>
+      </div>
+      <span class="dock-divider"></span>
+      <button type="button" class="dock-action" id="roofBtn" aria-pressed="false" title="升起 / 收起观星车顶">
+        <svg class="icon"><use href="#i-roof"></use></svg><span class="dock-label">升起车顶</span>
+      </button>
+      <span class="dock-divider dock-divider-short"></span>
+      <button type="button" class="dock-action is-on" id="orbitBtn" aria-pressed="true" title="开启 / 暂停自动环绕">
+        <svg class="icon"><use href="#i-orbit"></use></svg><span class="dock-label">自动环绕</span>
+      </button>
+      <span class="dock-divider dock-divider-short"></span>
+      <button type="button" class="dock-action dock-action-icon" id="resetBtn" title="复位视角" aria-label="复位视角">
+        <svg class="icon"><use href="#i-reset"></use></svg>
+      </button>
+    </nav>
+
+    <div class="corner-note" aria-hidden="true">
+      <span>CONCEPT STUDY · 2026</span>
+      <span>N90 · SNOWLINE / NON-OFFICIAL</span>
+    </div>
+
+    <div class="sr-only" id="srStatus" role="status" aria-live="polite"></div>
+  </div>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "../../shared/vendor/three/three.module.js",
+        "three/addons/": "../../shared/vendor/three/addons/"
+      }
+    }
+  </script>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
