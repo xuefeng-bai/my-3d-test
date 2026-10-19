@@ -1,0 +1,14 @@
+{
+  "name": "my-3d-test",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MY-3D-TEST — 个人 3D 实验场：多个独立的 Three.js 场景，共享本地依赖与预览服务器。",
+  "scripts": {
+    "start": "node server.cjs",
+    "new": "node scripts/new-project.mjs",
+    "check": "node scripts/check-projects.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
